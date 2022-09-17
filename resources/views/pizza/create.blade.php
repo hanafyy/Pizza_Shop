@@ -10,13 +10,13 @@
         <h5 class="card-header">Featured</h5>
         <div class="card-body">
             <ul class="list-group">
-                <a href="" class="list-group-item list-group-item-action">
+                <a href="{{route('pizza.create')}}" class="list-group-item list-group-item-action">
                     add pizza
                 </a>
                 
             
            
-                <a href="" class="list-group-item list-group-item-action">
+                <a href="{{route('pizza.index')}}" class="list-group-item list-group-item-action">
                     view
                 </a>
             </ul>
@@ -35,7 +35,7 @@
                 @endforeach
                 </div>
             @endif
-            <form action="{{route('pizza.store')}}" method="POST">
+            <form action="{{route('pizza.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                     
 
