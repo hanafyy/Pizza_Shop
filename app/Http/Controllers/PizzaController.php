@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PizzaStoreRequest;
 use App\Pizza;
 
+
+
 class PizzaController extends Controller
 {
     /**
@@ -15,8 +17,9 @@ class PizzaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view("pizza.index");
+    {   
+        $pizzas = pizza::get();
+        return view("pizza.index",compact('pizzas'));
     }
 
     /**
