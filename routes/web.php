@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\PizzaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,10 +20,17 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('pizza', PizzaController::class);
 
+
+// Route::get('/pizza/index', [PizzaController::class, 'index'])->name('pizza.index');
+
+// Route::get('/pizza/create', [PizzaController::class, 'create'])->name('pizza.create');
+// Route::post('/pizza/store', [PizzaController::class, 'store'])->name('pizza.store');
+
+// Route::get('/pizza/{$id}/edit', [PizzaController::class, 'edit'])->name('pizza.edit');
+
+// Route::delete('/pizza/{$id}/delete', [PizzaController::class, 'destroy'])->name('pizza.destroy');
+
+// Route::delete('/pizza/delete/{$id}', [PizzaController::class, 'delete'])->name('pizza.delete');
 Auth::routes();
-
-Route::get('/pizza/index', [App\Http\Controllers\PizzaController::class, 'index'])->name('pizza.index');
-
-Route::get('/pizza/create', [App\Http\Controllers\PizzaController::class, 'create'])->name('pizza.create');
-Route::post('/pizza/store', [App\Http\Controllers\PizzaController::class, 'store'])->name('pizza.store');

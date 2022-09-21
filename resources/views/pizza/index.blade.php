@@ -60,12 +60,32 @@
                                 <td>{{$pizza->medium_pizza_price}}</td>
                                 <td>{{$pizza->large_pizza_price}}</td>
                                 <td>{{$pizza->category}}</td>
-                                <td><button class="btn btn-primary" type="">edit</button></td>
-                                <td><button class="btn btn-danger" type="">delete</button></td>
+                                <td><a href="{{route('pizza.edit',$pizza->id)}}" class="btn btn-primary">edit</a></td>
+                                <td><button class="btn btn-danger" data-bs-toggle="modal" type="" data-bs-target="#exampleModal{{$pizza->id}}">delete</button></td>
+                                <form action="{{route('pizza.destroy',$pizza->id)}}" method="post">@csrf 
+                                    @method('DELETE')
+                                <div class="modal fade" id="exampleModal{{$pizza->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">delete confirmation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            are you sure ,you want to delete ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit"  class="btn btn-danger">delete</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                {{$pizzas->links()}}
 
                 </div>
             </div>
