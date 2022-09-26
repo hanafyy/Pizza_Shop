@@ -19,10 +19,12 @@
                             add pizza
                         </a>
                         
-                    
-                
                         <a href="{{route('pizza.index')}}" class="list-group-item list-group-item-action">
                             view
+                        </a>
+
+                        <a href="{{route('user.order')}}" class="list-group-item list-group-item-action">
+                            user orders
                         </a>
                     </ul>
                 </div>   

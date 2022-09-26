@@ -4,7 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Middleware\Admin;
+
 use App\Http\Controllers\PizzaController;
+use PHPUnit\TextUI\XmlConfiguration\Group;
+
+use App\Http\Controllers\UserOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,17 +25,17 @@ use App\Http\Controllers\PizzaController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('pizza', PizzaController::class);
+
+Route::get('/user', function () {
+    return view('user.home');
+})->middleware(['auth']); 
 
 
-// Route::get('/pizza/index', [PizzaController::class, 'index'])->name('pizza.index');
+ Route::resource('pizza', PizzaController::class)->middleware(['auth','Admin']);
 
-// Route::get('/pizza/create', [PizzaController::class, 'create'])->name('pizza.create');
-// Route::post('/pizza/store', [PizzaController::class, 'store'])->name('pizza.store');
+ Route::get('user/order',[UserOrderController::class ,'index'])->middleware(['auth','Admin'])->name('user.order');
+ Route::post('/order/{id}/status',[UserOrderController::class ,'ChangeStatus'])->middleware(['auth','Admin'])->name('user.order.status');
 
-// Route::get('/pizza/{$id}/edit', [PizzaController::class, 'edit'])->name('pizza.edit');
 
-// Route::delete('/pizza/{$id}/delete', [PizzaController::class, 'destroy'])->name('pizza.destroy');
-
-// Route::delete('/pizza/delete/{$id}', [PizzaController::class, 'delete'])->name('pizza.delete');
+// Route::resource('pizza', PizzaController::class);
 Auth::routes();
